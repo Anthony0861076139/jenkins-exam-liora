@@ -1,7 +1,7 @@
 pipeline {
 environment {
-DOCKER_ID = anthony086
-DOCKER_PASS = credentials ("DOCKER_HUB_PASS")
+DOCKER_ID = "anthony086"
+DOCKER_PASS = credentials("DOCKER_HUB_PASS")
 }
 
   stages {
