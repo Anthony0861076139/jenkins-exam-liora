@@ -2,7 +2,7 @@ pipeline {
 environment {
 DOCKER_ID = "anthony086"
 DOCKER_PASS = credentials("DOCKER_HUB_PASS")
-DOCKER_MOVIE_IMAGE = movieAppImage
+DOCKER_MOVIE_IMAGE = "movieAppImage"
 }
 
 agent any 
