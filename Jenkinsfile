@@ -4,6 +4,8 @@ DOCKER_ID = "anthony086"
 DOCKER_PASS = credentials("DOCKER_HUB_PASS")
 }
 
+agent any 
+
 stages {
   stage ("Docker build stage") {
     steps {
