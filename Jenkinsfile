@@ -11,7 +11,7 @@ stages {
   stage ("Docker build & push stage") {
     steps {
       sh '''
-      cd ~/jenkins-exam-liora/app/movie-service
+      cd ${WORKSPACE}/app/movie-service
       docker build . -t ${DOCKER_MOVIE_IMAGE}:latest
       docker image ls
       docker tag ${DOCKER_MOVIE_IMAGE} ${DOCKER_ID}/${DOCKER_MOVIE_IMAGE}
