@@ -28,7 +28,7 @@ stages {
   stage ("deploy dev env") {
     steps {
       sh '''
-      helm install jenkins-exam-liora ./helm-chart --values=./values-dev.yaml
+      helm install jenkins-exam-liora ./helm-chart --values=./helm-chart/values-dev.yaml
       '''
       }
     }
