@@ -28,7 +28,7 @@ stages {
   stage ("deploy dev env") {
     steps {
       sh '''
-      rm -Rf ~/.kube/
+      rm -Rf ${WORKSPACE}/.kube/
       mkdir ${WORKSPACE}/.kube
       cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
       helm install jenkins-exam-liora ./helm-chart --values=./helm-chart/values-dev.yaml
