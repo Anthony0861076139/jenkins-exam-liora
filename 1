@@ -1,0 +1,41 @@
+install.go:225: 2026-09-15 17:34:31.920070004 +0000 UTC m=+0.068845015 [debug] Original chart version: ""
+install.go:242: 2026-09-15 17:34:31.920190605 +0000 UTC m=+0.068965646 [debug] CHART PATH: /home/ubuntu/jenkins-exam-liora/helm-chart
+
+Error: INSTALLATION FAILED: Kubernetes cluster unreachable: the server has asked for the client to provide credentials
+helm.go:92: 2026-09-15 17:34:31.930007649 +0000 UTC m=+0.078782670 [debug] the server has asked for the client to provide credentials
+Kubernetes cluster unreachable
+helm.sh/helm/v3/pkg/kube.(*Client).IsReachable
+	helm.sh/helm/v3/pkg/kube/client.go:137
+helm.sh/helm/v3/pkg/action.(*Install).RunWithContext
+	helm.sh/helm/v3/pkg/action/install.go:238
+main.runInstall
+	helm.sh/helm/v3/cmd/helm/install.go:317
+main.newInstallCmd.func2
+	helm.sh/helm/v3/cmd/helm/install.go:156
+github.com/spf13/cobra.(*Command).execute
+	github.com/spf13/cobra@v1.10.2/command.go:1015
+github.com/spf13/cobra.(*Command).ExecuteC
+	github.com/spf13/cobra@v1.10.2/command.go:1148
+github.com/spf13/cobra.(*Command).Execute
+	github.com/spf13/cobra@v1.10.2/command.go:1071
+main.main
+	helm.sh/helm/v3/cmd/helm/helm.go:91
+runtime.main
+	runtime/proc.go:290
+runtime.goexit
+	runtime/asm_amd64.s:1771
+INSTALLATION FAILED
+main.newInstallCmd.func2
+	helm.sh/helm/v3/cmd/helm/install.go:158
+github.com/spf13/cobra.(*Command).execute
+	github.com/spf13/cobra@v1.10.2/command.go:1015
+github.com/spf13/cobra.(*Command).ExecuteC
+	github.com/spf13/cobra@v1.10.2/command.go:1148
+github.com/spf13/cobra.(*Command).Execute
+	github.com/spf13/cobra@v1.10.2/command.go:1071
+main.main
+	helm.sh/helm/v3/cmd/helm/helm.go:91
+runtime.main
+	runtime/proc.go:290
+runtime.goexit
+	runtime/asm_amd64.s:1771
