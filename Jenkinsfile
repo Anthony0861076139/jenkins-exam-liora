@@ -38,7 +38,7 @@ stages {
       echo $DOCKER_TAG
       cp helm-chart/values-dev.yaml values-dev.yaml
       kubectl config current-context
-      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-dev.yaml --set-image-tag="${DOCKER_TAG}" -n dev
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-dev.yaml --set image.tag="${DOCKER_TAG}" -n dev
       '''
       }
     }
@@ -54,7 +54,7 @@ stages {
       echo $DOCKER_TAG
       cp helm-chart/values-qa.yaml values-qa.yaml
       kubectl config current-context
-      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-qa.yaml --set image tag="${DOCKER_TAG}" -n qa
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-qa.yaml --set image.tag="${DOCKER_TAG}" -n qa
       '''
       }
     }
@@ -70,7 +70,7 @@ stages {
       echo $DOCKER_TAG
       cp helm-chart/values-staging.yaml values-staging.yaml
       kubectl config current-context
-      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-staging.yaml --set image tag="${DOCKER_TAG}" -n staging
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-staging.yaml --set image.tag="${DOCKER_TAG}" -n staging
       '''
       }
     }
@@ -90,7 +90,7 @@ stages {
         echo $DOCKER_TAG
         cp helm-chart/values-prod.yaml values-prod.yaml
         kubectl config current-context
-        helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-prod.yaml --set image tag="${DOCKER_TAG}" -n prod
+        helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-prod.yaml --set image.tag="${DOCKER_TAG}" -n prod
         '''
         }
       }
