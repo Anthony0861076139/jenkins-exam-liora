@@ -35,7 +35,6 @@ stages {
       rm -Rf ${WORKSPACE}/.kube/
       mkdir ${WORKSPACE}/.kube
       cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
-      cat ${WORKSPACE}
       echo $DOCKER_TAG
       sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-dev.yaml
       kubectl config current-context
