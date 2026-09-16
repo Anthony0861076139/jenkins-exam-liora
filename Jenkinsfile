@@ -8,7 +8,7 @@ DOCKER_CAST_IMAGE = "cast-app-image"
 }
 
 agent any 
-'''
+
 stages {
   stage ("Docker build & push stage") {
     steps {
@@ -26,7 +26,6 @@ stages {
       '''
       }
     }
-    '''
   stage ("deploy dev env") {
     environment {
       KUBECONFIG = credentials("config-k3s.txt")
