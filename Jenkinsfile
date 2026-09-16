@@ -43,5 +43,56 @@ stages {
       '''
       }
     }
+    stage ("deploy in qa") {
+    environment {
+      KUBECONFIG = credentials("config")
+    }
+    steps {
+      sh '''
+      rm -Rf ${WORKSPACE}/.kube/
+      mkdir ${WORKSPACE}/.kube
+      cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
+      echo $DOCKER_TAG
+      cp helm-chart/values-qa.yaml values-qa.yaml
+      sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-qa.yaml
+      kubectl config current-context
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-qa.yaml -n qa
+      '''
+      }
+    }
+    stage ("deploy in staging") {
+    environment {
+      KUBECONFIG = credentials("config")
+    }
+    steps {
+      sh '''
+      rm -Rf ${WORKSPACE}/.kube/
+      mkdir ${WORKSPACE}/.kube
+      cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
+      echo $DOCKER_TAG
+      cp helm-chart/values-staging.yaml values-staging.yaml
+      sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-staging.yaml
+      kubectl config current-context
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-staging.yaml -n staging
+      '''
+      }
+    }
+    stage ("deploy in prod") {
+    environment {
+      KUBECONFIG = credentials("config")
+    }
+    steps {
+      sh '''
+      rm -Rf ${WORKSPACE}/.kube/
+      mkdir ${WORKSPACE}/.kube
+      cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
+      echo $DOCKER_TAG
+      cp helm-chart/values-prod.yaml values-prod.yaml
+      sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-prod.yaml
+      kubectl config current-context
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-prod.yaml -n prod
+      '''
+      }
+    }
   }
 }
