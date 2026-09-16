@@ -26,7 +26,7 @@ stages {
       '''
       }
     }
-  stage ("deploy dev env") {
+  stage ("deploy in dev") {
     environment {
       KUBECONFIG = credentials("config")
     }
@@ -35,6 +35,8 @@ stages {
       rm -Rf ${WORKSPACE}/.kube/
       mkdir ${WORKSPACE}/.kube
       cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
+      cat ${WORKSPACE}
+      sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-dev.yaml
       kubectl config current-context
       helm upgrade --install jenkins-exam-liora ./helm-chart --values=./helm-chart/values-dev.yaml -n dev
       '''
