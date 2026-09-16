@@ -28,7 +28,7 @@ stages {
     }
   stage ("deploy dev env") {
     environment {
-      KUBECONFIG = credentials("config-k3s.txt")
+      KUBECONFIG = credentials("ab6a238b-c9f0-472b-83eb-13905c85f0db")
     }
     steps {
       sh '''
