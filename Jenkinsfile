@@ -4,11 +4,11 @@ DOCKER_ID = "anthony086"
 DOCKER_PASS = credentials("DOCKER_HUB_PASS")
 DOCKER_MOVIE_IMAGE = "movie-app-image"
 DOCKER_CAST_IMAGE = "cast-app-image"
-KUBECONFIG = credentials("config-k3s")
+
 }
 
 agent any 
-
+'''
 stages {
   stage ("Docker build & push stage") {
     steps {
@@ -26,7 +26,11 @@ stages {
       '''
       }
     }
+    '''
   stage ("deploy dev env") {
+    environment {
+      KUBECONFIG = credentials("config-k3s.txt")
+    }
     steps {
       sh '''
       rm -Rf ${WORKSPACE}/.kube/
