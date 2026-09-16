@@ -35,7 +35,8 @@ stages {
       rm -Rf ${WORKSPACE}/.kube/
       mkdir ${WORKSPACE}/.kube
       cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
-      helm upgrade --install jenkins-exam-liora ./helm-chart --values=./helm-chart/values-dev.yaml
+      kubectl config current-context
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=./helm-chart/values-dev.yaml -n dev
       '''
       }
     }
