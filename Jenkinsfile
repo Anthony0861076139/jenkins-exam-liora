@@ -38,7 +38,7 @@ stages {
       echo $DOCKER_TAG
       cp helm-chart/values-dev.yaml values-dev.yaml
       kubectl config current-context
-      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-dev.yaml --set image tag="${DOCKER_TAG}" -n dev
+      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-dev.yaml --set-image-tag="${DOCKER_TAG}" -n dev
       '''
       }
     }
