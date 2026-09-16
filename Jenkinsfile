@@ -82,16 +82,21 @@ stages {
       KUBECONFIG = credentials("config")
     }
     steps {
-      sh '''
-      rm -Rf ${WORKSPACE}/.kube/
-      mkdir ${WORKSPACE}/.kube
-      cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
-      echo $DOCKER_TAG
-      cp helm-chart/values-prod.yaml values-prod.yaml
-      sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-prod.yaml
-      kubectl config current-context
-      helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-prod.yaml -n prod
-      '''
+      timeout(time: 15, unit: "MINUTES") {
+        input message: "Do you want to deploy to production?", ok: 'Yes'
+      }
+        script {
+        sh '''
+        rm -Rf ${WORKSPACE}/.kube/
+        mkdir ${WORKSPACE}/.kube
+        cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
+        echo $DOCKER_TAG
+        cp helm-chart/values-prod.yaml values-prod.yaml
+        sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-prod.yaml
+        kubectl config current-context
+        helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-prod.yaml -n prod
+        '''
+        }
       }
     }
   }
