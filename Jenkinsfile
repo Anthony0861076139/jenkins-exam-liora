@@ -36,7 +36,7 @@ stages {
       mkdir ${WORKSPACE}/.kube
       cat ${KUBECONFIG} > ${WORKSPACE}/.kube/config
       echo $DOCKER_TAG
-      cp ~/jenkins-liora-exam/helm-chart/values-dev.yaml values-dev.yaml
+      cp /helm-chart/values-dev.yaml values-dev.yaml
       sed -i "s+tag.*+tag : ${DOCKER_TAG}+g" values-dev.yaml
       kubectl config current-context
       helm upgrade --install jenkins-exam-liora ./helm-chart --values=values-dev.yaml -n dev
